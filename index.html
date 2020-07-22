@@ -1,0 +1,234 @@
+<html>
+
+<head>
+    <title>EPAM</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="dowmloads/favicon.ico ">
+</head>
+
+<body>
+
+
+    
+
+            <div class="sign-in-form">
+                <form>
+                    <h2>
+                        <table cellpadding="9px" cellspacing="5px" style="width: 120%; height: 30px;">
+                            <tr>
+                                <td><img class="education-icon" src="educationIcon.png" /></td>
+                                <td style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color:white;font-weight: 900;">REGISTRATION FORM</td>
+
+                            </tr>
+                        </table>
+                    </h2>
+
+                </form>
+
+               
+                <form name="userRegForm" onsubmit="return validateForm(this);">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="firstName">Name</label>
+                                <input type="text" name="Name" id="firstName" class="form-control " autocomplete="false" required title="Name is required." oninput="return validateRequired(this);" onchange="return validateRequired(this);">
+                                <i class="input-glyph glyphicon glyphicon-ok-circle"></i>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Phone</label>
+                                <input type="text" name="phone" id="phone" class="form-control" autocomplete="false" maxlength="10" required title="Phone Number is required." oninput="return validateRequired(this);" onchange="return validateRequired(this);">
+                                <i class="input-glyph glyphicon glyphicon-ok-circle"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" name="email" id="email" class="form-control input-box" autocomplete="false" required pattern="^.{0,64}$" title="Enter an email address with a maximum of 64 characters." oninput="validateEmail(this);" onchange="validateEmail(this);">
+                                <i class="input-glyph glyphicon glyphicon-ok-circle"></i>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" autocomplete="false" required pattern="^((?=.*[0-9])(?=.*[a-zA-Z])).{6,12}$" title="Enter a password between 6 and 12 characters, containing at least one letter and one number." oninput="validatePassword(this);" onchange="validatePassword(this);">
+                                <i class="input-glyph glyphicon glyphicon-ok-circle"></i>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordConfirm">Confirm Password</label>
+                                <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" autocomplete="false" required pattern="^((?=.*[0-9])(?=.*[a-zA-Z])).{6,12}$" title="Passwords must match." oninput="validatePassword(this);" onchange="validatePassword(this);">
+                                <i class="input-glyph glyphicon glyphicon-ok-circle"></i>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="firstName">Date</label>
+                                <input type="date" name="date" id="firstName" class="form-control" autocomplete="false" required title="Name is required." oninput="return validateRequired(this);" onchange="return validateRequired(this);">
+                                <i class="input-glyph glyphicon glyphicon-ok-circle"></i>
+                            </div>
+
+
+
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary pull-right">Register</button>
+                            </div>
+                        </div>
+</form>
+
+            </div>
+    
+
+    <script>
+  
+    
+            var emailPattern = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$');
+
+           
+
+            var email = document.forms['userRegForm'].email;
+            var password = document.forms['userRegForm'].password;
+            var passwordConfirm = document.forms[0].passwordConfirm;
+            var firstName = document.forms['userRegForm'].firstName;
+            var lastName = document.forms['userRegForm'].lastName;
+            var phone = document.forms['userRegForm'].phone;
+
+            
+            var emailLengthPattern = new RegExp($(email).attr('pattern'));
+
+            var passwordPattern = new RegExp($(password).attr('pattern'));
+
+           
+            $('input[required]').popover({
+                placement: 'bottom',
+                container: 'body',
+                trigger: 'manual',
+                selector: 'true',
+                content: function () {
+                    return $(this).attr('title');
+                },
+                template: '<div class="popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>'
+            }).focus(function () {
+                $(this).popover('hide');
+            });
+
+            function validateForm(form) {
+
+              
+                if (!emailPattern.test(email.value) || !emailLengthPattern.test(email.value)) {
+                    $(email).popover('show');
+                    return false;
+                } else {
+                    $(email).addClass('valid')
+                }
+
+                if (!passwordPattern.test(password.value)) {
+                    $(password).popover('show');
+                    return false;
+                }
+
+             
+                if (!passwordPattern.test(passwordConfirm.value)) {
+                    $(passwordConfirm).popover('show');
+                    return false;
+                }
+
+             
+                if (password.value !== passwordConfirm.value) {
+                    $(passwordConfirm).popover('show');
+                    return false;
+                }
+
+              
+                if (firstName.value.length === 0) {
+                    $(firstName).popover('show');
+                    return false;
+                }
+                if (phone.value.length === 0) {
+                    $(phone).popover('show');
+                    return false;
+                }
+
+              
+                if (lastName.value.length === 0) {
+                    $(lastName).popover('show');
+                    return false;
+                }
+
+             
+                alert('Submitted successfully');
+
+             
+                return false;
+            }
+
+            function validateEmail(input) {
+                if (emailPattern.test(input.value) && emailLengthPattern.test(input.value)) {
+                    $(input).addClass('valid')
+                } else {
+                    $(input).removeClass('valid');
+                }
+            }
+
+            
+            function validatePassword(input) {
+
+                if (input.setCustomValidity) {
+                    input.setCustomValidity('');
+
+                    if (input.validity && !input.validity.valid) {
+                        input.setCustomValidity(input.title);
+                    }
+                }
+
+                if (passwordConfirm.setCustomValidity) {
+                    if (password.value !== passwordConfirm.value) {
+                        passwordConfirm.setCustomValidity(passwordConfirm.title);
+                    } else {
+                        passwordConfirm.setCustomValidity('');
+                    }
+                } else {
+
+                    if (passwordPattern.test(input.value)) {
+                        $(input).addClass('valid');
+
+                        if (password.value === passwordConfirm.value) {
+                            $(passwordConfirm).addClass('valid');
+                        } else {
+                            $(passwordConfirm).removeClass('valid');
+                        }
+                    } else {
+                        $(input).removeClass('valid');
+                    }
+                }
+            }
+
+            function validateRequired(input) {
+
+                if (input.setCustomValidity) {
+                    input.setCustomValidity('');
+
+                    if (input.validity && !input.validity.valid) {
+                        input.setCustomValidity(input.title);
+                    }
+                }
+
+                if (input.value.length > 0) {
+                    $(input).addClass('valid');
+                } else {
+                    $(input).removeClass('valid');
+                }
+            }
+
+    </script>
+
+</body>
+
+</html>
